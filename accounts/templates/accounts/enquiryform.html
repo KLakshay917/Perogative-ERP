@@ -1,0 +1,22 @@
+{% extends 'accounts/base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{%block form%}
+<div class="container mt-3 mb-5" style="width: 90%; font-size: 14px;">
+
+<form method="POST" class="card p-3 mt-5 needs-validation" novalidate>
+    
+    <h1 style="color:#342a4e; text-align:center">Enquiry Form</h1>
+    
+
+    <hr>
+		
+    {% csrf_token %}
+    {{ form|crispy }}         
+    
+    <input type="submit" style="border:none;"class="btn btn-primary mb-2 btn-grad" name="submit" , value='Login'>
+</form> 
+
+</div>
+
+{%endblock%}

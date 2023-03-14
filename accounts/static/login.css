@@ -1,0 +1,19 @@
+body {
+    background: url("loginbg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    background-color: rgba(105, 29, 105, 0.377);
+    background-blend-mode: lighten;
+  }
+
+  .card
+  {
+    background-color: rgb(245, 245, 245);
+  }
+  .submit_btn
+  {
+    background-color:#342a4e;
+    color: white;
+    width: 20%;
+    height:40px;
+    border-radius: 10px;
+  }

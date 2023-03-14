@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="{% static 'working/dashboardCss.css' %}" rel="stylesheet">   
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary"style="padding:0; background-color:#11101d !important; z-index: 10;">
+    <div class="container-fluid justify-content-start">
+      <i class="open fa fa-bars"></i>
+      <a class="navbar-brand mx-4"  href="#"><img src="{% static 'working/Logo.png' %}" alt="Logo" width="36%" style="margin-left:-0.6rem" ></a>
+      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent"></div> -->
+      <div style="margin-right: 15rem;">  
+      <form class="d-flex " role="search">
+          <input class="search form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+      <div class="profile nav-item dropdown" style="color:white;"> 
+      
+        <span class="nav-link dropdown dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{request.user.username}}
+        </span>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><a class="dropdown-item" href="#">action</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="sidebar close" style="top: 0 !important; z-index: 1;">
+    <div class="logo-details mb-3">      
+      <img src="{% static 'working/Logo.png' %}" alt="Logo" width="100%" style="margin: 2rem 0 0 0.1rem;" >
+    </div>
+    {% if user.user_type == '1' %}
+    <!-- Admin Usertype=1 -->
+    <ul class="nav-links" >  
+      <li >
+        <a href="{% url 'admin_dashboard'%}" {% if request.resolver_match.url_name == 'admin_dashboard' %}class="on"{% endif %}>
+          <i  class='fa fa-grip'></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+        </li>
+
+        <li  class="dad">
+          <div {% if '/student/' in request.path %}class="on iocn-link"{% endif %}class="iocn-link">
+            <a class="expand" >
+              
+              <i class="fa fa-graduation-cap"></i>
+              <span class="link_name arrow">Student</span>
+            </a>
+            <i class="fa-solid fa-caret-down arrow"></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Students</a></li>
+            <li><a href="{% url 'admin_addStudent' %}">Add Student</a></li>
+            <li><a href="{% url 'admin_viewStudent' %}">View Student</a></li>
+            <li><a href="#">Feedback</a></li>
+          </ul>
+        </li>
+       
+        <li class="dad">
+          <div {% if '/staff/' in request.path %}class="on iocn-link"{% endif %}class="iocn-link">
+            <a>
+              <i class="fa fa-chalkboard-user"></i>
+              <span class="link_name arrow">Staff</span>
+            </a>
+            <i class="fa-solid fa-caret-down arrow"></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Staff</a></li>
+            <li><a href="{% url 'admin_addTeacher' %}">Add Teacher</a></li>
+            <li><a href="{% url 'admin_addCaller' %}">Add Caller</a></li>
+            <li><a href="{% url 'admin_viewStudent' %}">View Staff</a></li>
+            <li><a href="#">Feedback</a></li>
+          </ul>
+        </li>
+        <li  class="dad">
+          <div {% if '/course/' in request.path %}class="on iocn-link"{% endif %}class="iocn-link">
+            <a class="expand">
+              
+              <i class="fa fa-book-open"></i>
+              <span class="link_name">Courses</span>
+            </a>
+            <i class="fa-solid fa-caret-down arrow"></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Courses</a></li>
+            <li><a href="{% url 'admin_addCourse' %}">Add Course</a></li>
+            <li><a href="#">Feedback</a></li>
+          </ul>
+        </li>
+ <li >
+          <div {% if '/course/' in request.path %}class="on iocn-link"{% endif %}class="iocn-link">
+            <a class="expand">              
+              <i class="fa fa-dollar-sign"></i>
+              <span class="link_name">Fees</span>
+            </a>
+          </div>
+        </li>
+        <li >
+          <div {% if '/course/' in request.path %}class="on iocn-link"{% endif %}class="iocn-link">
+            <a class="expand">              
+              <i class="fa fa-comment"></i>
+              <span class="link_name">Feedback</span>
+            </a>
+          </div>
+        </li>
+
+        <li >
+          <div {% if '/course/' in request.path %}class="on iocn-link"{% endif %}class="iocn-link">
+            <a class="expand">              
+              <i class="fa fa-note-sticky"></i>
+              <span class="link_name">Complaints</span>
+            </a>
+          </div>
+        </li>
+
+       
+
+
+        
+        
+
+
+    </ul>   
+
+    {% elif user.user_type == '2' %}
+    <!-- Teacher Usertype=2 -->
+    <ul class="nav-links" > <li><i class="open fa fa-book-open"></i></li></ul>
+
+
+    <!-- Callers Usertype=3 -->
+    {% elif user.user_type == '3' %}
+
+
+
+    {% else %}
+    <ul class="nav-links" > <li><i class="open fa fa-book"></i></li></ul>
+    {% endif %}
+
+
+    
+
+
+
+</div>
+
+<section class="home-section">
+
+      {%block home-section %}
+      {%endblock%}
+    </section>
+
+
+  
+  <script>
+  let arrow = document.querySelectorAll(".iocn-link");
+  for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=>{
+   let arrowParent = e.target.closest(".dad");
+   console.log(arrowParent)
+   arrowParent.classList.toggle ("showMenu");
+    });
+  }
+
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector (".open");
+  let ony = document.querySelectorAll(".on");
+  
+  sidebarBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle ("close");
+    sidebarBtn.classList.toggle("fa-bars")
+    
+    sidebarBtn.classList.toggle("fa-xmark")    
+    ony.classList.toggle("on")
+  });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  
+</body>
+</html>

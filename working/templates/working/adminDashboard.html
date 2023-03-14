@@ -1,0 +1,118 @@
+{%extends 'working/base.html' %}
+{%load static%}
+{%block home-section%}
+
+<h2>Welcome {{request.user.username}} !</h2>
+<h3>Dashboard</h3>
+<hr>
+
+<div class="row ">
+  <div class="card">
+    
+    <div class="content">
+      <h2>6</h2>
+      <p class="tagline">Courses</p>
+    </div>
+    <i class="fas fa-book"></i>
+  </div>
+  <div class="card">
+    <div class="content">
+      <h2>10</h2>
+      <p class="tagline">Students</p>
+    </div>
+    <i class="fas fa-user"></i>
+  </div>
+  <div class="card">
+   
+    <div class="content">
+      <h2>500</h2>
+      <p class="tagline">Staff</p>
+    </div>
+    <i class="fas fa-user-tie"></i>
+  </div>
+  <!-- <div class="card">
+    <i class="fas fa-clipboard"></i>
+    <div class="content">
+      <h2>5000</h2>
+      <p class="tagline">Complaints</p>
+      <p id="num-staff"></p>
+    </div>
+  </div> -->
+ <div class="card">
+   
+    <div class="content">
+      <h2>5000</h2>
+      <p class="tagline">Revenue</p>
+    </div>
+       <i class="fas fa-sack-dollar"></i>
+  </div>
+
+</div>
+
+
+
+<style>
+  
+ .row {
+   margin-left: -6px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  scroll-behavior: smooth;
+  text-align: center;
+  width: 100%;
+}
+
+.card {
+  width: calc(22% - 10px);
+  height: 99px;
+  padding: 10px;  
+  border-radius: 10px;
+  box-shadow:0px 2px 5px 7px rgb(0 0 0 / 10%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  
+}
+
+.card i {
+  font-size: 2rem;
+  /* margin-right: 1rem; */
+  color: #343434;
+  padding: 12px;
+  border-radius: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: .5rem;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  color: var(--green);
+}
+
+.tagline {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color:grey;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    margin-bottom: 10px
+  }
+}
+</style>
+
+
+{%endblock%}

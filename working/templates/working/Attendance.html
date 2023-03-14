@@ -1,0 +1,68 @@
+{% extends 'working/base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{%block home-section%}
+
+<!-- course_list.html -->
+<form method="post" >
+    {% csrf_token %}
+    <input type="hidden" name="form_type" value="course_select">
+    <label for="course" class="form-label">Select a course:</label>
+    <div class="col-md-6 mb-3">
+    <select id="course" class="form-select" name="course">
+      <option>Select a course</option>
+        {% for course in courses %}
+            <option value="{{ course.id }}">{{ course.name }}</option>
+        {% endfor %}
+    </select>
+     </div>
+    <input class="submit_btn" type="submit" style="border:none; width: 7% !important; margin-bottom: 1rem;"class="btn btn-primary mb-3 btn-grad" name="submit" , value='Submit'>
+
+</form>
+
+
+{% if not students %}
+<h2>No Students</h2>
+
+{%else%}
+
+
+  
+<div class="container overflow-x-scroll" style="border-radius: 5px;  background-color: white;">
+ <form method="POST">
+  <input type="hidden" name="form_type"value="attendance">
+  <h2 style="text-align: center; color: #342a4e;">{{selected.name}} Students</h2>
+  <hr>
+    <table class="table viewtable p-5" >
+      <thead>
+        <tr>
+          <!-- <th scope="col">#</th> -->
+          <th class="p-10" scope="col">ID</th>
+          <th scope="col">Name</th> 
+          <th scope="col">DOB</th> 
+          <th scope="col">Course</th> 
+          <th scope="col">Gender</th>
+          <th scope="col">Present</th>     
+  
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in students %}
+          <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.dob }}</td>
+            <td>{{ selected.name}}</td>
+            <td>{{ student.gender}}</td>
+            <td>
+              <input type="checkbox" name="attendance[]" value="{{ student.id }}-present">               
+            </td> 
+          </tr>
+        {% endfor %}
+        
+      </tbody>
+    </table>
+  </form>
+{% endif %}
+
+{%endblock%}
